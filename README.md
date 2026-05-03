@@ -1,39 +1,29 @@
 # Customer Support Data Pipeline
 
-This project demonstrates a simple ETL pipeline for customer support data.
+## Overview
 
-## Project Goal
+This project demonstrates a simple ETL pipeline built in Python.
 
-Transform raw customer support data into structured tables that can be used for analysis.
+The goal is to transform raw customer support data into structured tables
+that can be used for analysis.
 
-## Pipeline Steps
+## Architecture
 
-1. Load raw CSV data
-2. Clean and standardize column names
-3. Convert data types
-4. Build dimension and fact tables
-5. Store the data in SQLite database
+raw CSV → transformation → star schema → SQLite → analytical queries
 
-## Tech Stack
+## Technologies
 
 - Python
 - Pandas
 - SQLite
 
-## Project Structure
+## Pipeline Steps
 
-```
-customer-support-etl/
-├── data/
-│   └── customer_data.csv
-│
-├── src/
-│   ├── main.py
-│   └── analysis.py
-│
-├── requirements.txt
-└── README.md
-```
+- Load raw CSV data
+- Clean and standardize column names
+- Convert data types
+- Build dimension and fact tables
+- Store data in SQLite database
 
 ## Data Model
 
@@ -55,7 +45,30 @@ agents
 - **agents** – contains agent info like `agent_id`, `agent_name`, `supervisor`, `manager`, `tenure_bucket`  
 - **calls** – contains all call interactions, links to `orders` and `agents`
 
-## Running the project
+## Example Analysis
+
+The project includes SQL-based analysis, for example:
+- Distribution of customer satisfaction scores (CSAT)
+- Percentage of calls with customer feedback
+- Aggregations based on call and agent data
+
+## What I learned
+
+- How to design a simple ETL pipeline in Python
+- Data cleaning and standardization using pandas
+- Building a basic star schema (fact and dimension tables)
+- Working with SQLite as a lightweight data warehouse
+- Writing SQL queries for analytical use cases
+
+## Future Improvements
+
+- Add data validation (e.g. Great Expectations)
+- Containerize pipeline using Docker
+- Schedule pipeline using Airflow
+- Replace SQLite with a cloud data warehouse (e.g. BigQuery)
+- Improve logging and error handling
+
+## Setup
 
 Install dependencies:
 ```
@@ -63,13 +76,11 @@ pip install -r requirements.txt
 ```
 
 Run ETL pipeline:
-
 ```
 python src/main.py
 ```
 
 Run analysis:
-
 ```
 python src/analysis.py
 ```
